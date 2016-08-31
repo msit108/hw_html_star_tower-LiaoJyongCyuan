@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        body{
+            font-family:monospace;
+        }
+        #table2{
+            position:relative;
+            left:40%;
+            -webkit-animation:rotate linear 2s infinite;
+        }
+        @-webkit-keyframes rotate{
+            from{
+                -webkit-transform: rotate(0deg);
+            }to{
+                -webkit-transform: rotate(360deg);
+             }
+        }
+    </style>
+</head>
+<body>
+    <h3>建造星字塔</h3>
+    
+    <table>
+        <tr>
+            <td valign="middle"><input type="range" id="txt1" name="txt1" min="1" max="25" value="1" onclick="howMany()"></td>
+            <td id="td1" width="60" align="center"></td>
+        </tr>
+    </table>
+
+    <select id="choice1" name="choice1"  style="width:150px">
+        <option value="1">正星字塔</option>
+        <option value="2">倒星字塔</option>
+        <option value="3">風車</option>
+        <option value="4">旋轉風車</option>
+    </select>
+    <input type="button" id="button5" name="button5" value="建造" onclick="choice()" />
+
+    <br />
+    <br />
+
+    <table id="table1"></table>
+    <table id="table2"></table>
+
+    <script>
+        function star1(i) {
+            var tower = "";
+            for (var j = 0; j < i; j++) {
+                tower += "<tr align='center'><td>"
+                for (var k = 0; k <= j; k++) {
+                    tower += "＊";
+                }
+            }
+            table1.innerHTML = tower;
+        }
+
+        function star2(i) {
+            var tower = "";
+            for (var j = 0; j < i; j++) {
+                tower += "<tr align='center'><td>"
+                for (var k = i - j; k > 0; k = k - 1) {
+                    tower += "＊";
+                }
+            }
+            table1.innerHTML = tower;
+        }
+
+        function star3(i) {
+            var tower = "<tr align='right'><td valign='bottom'>";
+            for (var j = 0; j < i; j++) {
+                for (var k = i - j; k > 0; k = k - 1) {
+                    tower += "＊";
+                }
+                if (j < i-1) {
+                    tower += "<br>";
+                }
+            }
+            tower += "<td>";
+            for (var j = 0; j <= i; j++) {
+                for (var k = 0; k < j; k++) {
+                    tower += "＊";
+                }
+                tower += "<br>";
+            }
+            tower +="<tr><td>";
+            for (var j = 0; j < i; j++) {
+                for (var k = i - j; k > 0; k = k - 1) {
+                    tower += "＊";
+                }
+                tower += "<br>";
+
+            }
+            tower += "<td>";
+            for (var j = 0; j < i; j++) {
+                for (var k = 0; k <= j; k++) {
+                    tower += "＊";
+                }
+                tower += "<br>";
+            }
+            table1.innerHTML = tower;
+        }
+
+        function star4(i) {
+            var tower = "<tr align='right'><td valign='bottom'>";
+            for (var j = 0; j < i; j++) {
+                for (var k = i - j; k > 0; k = k - 1) {
+                    tower += "＊";
+                }
+                if (j < i - 1) {
+                    tower += "<br>";
+                }
+            }
+            tower += "<td>";
+            for (var j = 0; j <= i; j++) {
+                for (var k = 0; k < j; k++) {
+                    tower += "＊";
+                }
+                tower += "<br>";
+            }
+            tower += "<tr><td>";
+            for (var j = 0; j < i; j++) {
+                for (var k = i - j; k > 0; k = k - 1) {
+                    tower += "＊";
+                }
+                tower += "<br>";
+
+            }
+            tower += "<td>";
+            for (var j = 0; j < i; j++) {
+                for (var k = 0; k <= j; k++) {
+                    tower += "＊";
+                }
+                tower += "<br>";
+            }
+            table2.innerHTML = tower;
+        }
+
+        function howMany() {
+            td1.innerText = "共 " + txt1.value + " 層";
+        }
+        howMany()
+        
+        function choice() {
+            table1.innerHTML = "";
+            table2.innerHTML = "";
+            switch(choice1.value)
+            {
+                case "1": star1(txt1.value);
+                    break;
+                case "2": star2(txt1.value);
+                    break;
+                case "3": star3(txt1.value);
+                    break;
+                case "4": star4(txt1.value);
+                    break;
+            }
+        }
+        </script>
+</body>
+</html>
